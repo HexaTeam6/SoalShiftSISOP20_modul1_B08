@@ -147,3 +147,99 @@ print data[product]"<>"product
 
 ```
 membuat separator antara profit dan nama produk agar nanti setelah di sort dapat diperoleh nama produknya saja.
+
+## SOAL 2
+Dalam soal ini kita diminta untuk membuat sebuah script **bash** yang dapat menghasilkan password secara acak sebanyak 28 
+karakter yang terdiri dari **huruf besar**, **huruf kecil**, dan **angka**. Password tersebut 
+kemudian disimpan pada file yang berekstensi **.txt** dengan nama berdasarkan argumen 
+yang diinputkan dan nama file hanya berupa alphabet. Nama file yang diinputkan 
+akan dienkripsi menggunakan _**Caesar Cipher**_ yang disesuaikan dengan jam file tersebut 
+dibuat (0-23). Selain itu, kita diminta juga untuk membuat sebuah script **bash** 
+untuk mendekripsi kembali nama file yang telah kita buat sebelumnya.
+
+### Penyelesaian
+
+#### Enkripsi
+Dalam script **bash** **soal2_enkripsi**, pertama – tama  akan dibuat passwordnya terlebih dahulu dengan
+```
+PASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 28 | head -n 1)
+``` 
+dimana kode diatas akan membentuk sebuah string secara acak yang terdiri dari huruf besar, huruf kecil, dan angka dengan 
+panjang 28 karakter. Lalu string tersebut akan disimpan oleh variable `PASS`.
+
+Untuk mengambil jam (waktu) saat ini, digunakan
+```
+hour=`date +"%H"`
+```
+dimana angka jam saat ini akan disimpan di sebuah variable `hour`.
+
+Untuk mengambil nama file .txt yang diinputkan, digunakan
+```
+name=$1
+IFS='.'
+read -ra ADDR <<< "$name"
+msg="${ADDR[0]}"
+```
+dimana argumen yang diinputkan akan dipisah menggunakan field separator `‘.’` 
+sehingga kita mendapatkan nama file dengan memisah argumen yang dibatasi dengan 
+karakter `‘.’` dan string pada kolom pertama akan disimpan dalam sebuah variable 
+`msg`.
+
+Setelah mendapatkan nama file, nama file tersebut perlu dienkripsi menggunakan 
+**_Caesar Cipher_** yaitu dengan
+```
+while [ $hour -gt 0 ]
+do
+ 	change=$(echo $msg | tr '[A-Za-z]' '[B-ZAb-za]')
+ 	hour=$((hour-1))
+ 	msg=$change
+done
+```
+dimana nama file yang disimpan dalam variable msg akan digeser sebanyak jumlah 
+yang disimpan dalam variabel `hour`. Nama file akan diubah menggunakan `tr ‘[ ]‘ ‘[ ]‘` 
+dimana pada kolom square brackets pertama adalah asal huruf dan kolom square 
+brackets kedua adalah penggeseran huruf yang kita inginkan. Looping dalam kode 
+ini digunakan untuk mengulang penggeseran karakter sehingga terjadi penggeseran 1 karakter 
+sebanyak n kali (looping).
+
+Setelah nama file baru selesai dibuat, password yang tekah disimpan dalam variabel PASS akan disimpan ke file **.txt** baru 
+dengan
+````
+echo $PASS >> $change.txt
+````
+dimana `>>` berguna untuk mengalihkan isi dari variabel `PASS` menuju ke  file **.txt** yang kita tuju.
+
+#### Dekripsi
+Dalam script bash **soal2_dekripsi.sh**, pertama – tama akan mengambil waktu last modified yang kita masukkan dalam argument dengan
+````
+last=$(date +%H -r $1)
+````
+dimana jam waktu terakhir file tersebut dibuat akan diambil dan dimasukkan ke dalam variabel last.
+
+Setelah itu kita akan mengambil nama file yang telah diinputkan pada argument dengan
+````
+name=$1
+IFS='.'
+read -ra ADDR <<< "$name"
+msg="${ADDR[0]}"
+change=$msg
+````
+dimana nama file akan dipisah menggunakan field separator `‘.’` dan string yang 
+ada pada kolom pertama akan disimpan dalam variabel `msg` dan change. 
+
+Setelah mendapatkan nama file, nama file yang terdapat pada variabel change akan 
+di dekripsi dengan
+````
+while [ $last -gt 0 ]
+do
+ 	change=$(echo $change | tr '[B-ZAb-za]' '[A-Za-z]')
+ 	last=$((last-1))
+done
+````
+dimana nama file akan digeser sebanyak 1 huruf dengan perulangan sebanyak jam waktu yang telah disimpan dalam variable `last`.
+
+Setelah mendekripsi nama file maka nama file yang lama akan di rename dengan 
+````
+mv $msg.txt $change.txt
+````
+dimana nama file yang lama akan dirubah ken ama file yang baru.
