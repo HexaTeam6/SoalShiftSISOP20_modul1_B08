@@ -297,8 +297,8 @@ Dalam soal ini kita diminta untuk membuat:
  5 6-23/8 * * 0-5 bash /home/user/SoalShiftSISOP20_modul1_B08/soal3/soal3a.sh
  ````
  dimana 
-  `5` adalah menit (menit ke-5)
-  `6-23/8` adalah jam (dimulai dari jam 6 hingga 23 dengan jarak 8 jam) 
-  `0-5` adalah hari (minggu-jumat)
+ * `5` adalah menit (menit ke-5)
+ * `6-23/8` adalah jam (dimulai dari jam 6 hingga 23 dengan jarak 8 jam) 
+ * `0-5` adalah hari (minggu-jumat)
  
  ### Soal 3.3
