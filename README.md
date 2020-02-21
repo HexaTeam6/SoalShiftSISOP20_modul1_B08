@@ -14,6 +14,7 @@ Namun dia tidak dapat menyelesaikan tugas tersebut.
  3. Tampilkan 10 produk (product name) yang memiliki keuntungan (profit) paling
     sedikit berdasarkan 2 negara bagian (state) hasil poin 2.
 
+### Penyelesaian
 
 ### Soal 1.1 
 
@@ -242,7 +243,7 @@ Setelah mendekripsi nama file maka nama file yang lama akan di rename dengan
 ````
 mv $msg.txt $change.txt
 ````
-dimana nama file yang lama akan dirubah ken ama file yang baru.
+dimana nama file yang lama akan dirubah ke nama file yang baru.
 
 ## SOAL 3 
 Dalam soal ini kita diminta untuk membuat:
@@ -256,3 +257,11 @@ Dalam soal ini kita diminta untuk membuat:
      dengan format filename "duplicate_nomor" (contoh : duplicate_200, duplicate_201). Setelah itu lakukan pemindahan semua gambar 
      yang tersisa kedalam folder ./kenangan dengan format filename "kenangan_nomor" (contoh: kenangan_252, kenangan_253).
      Setelah tidak ada gambar di current directory, maka lakukan backup seluruh log menjadi ekstensi ".log.bak".
+     
+ ### Penyelesaian
+ 
+ ### Soal 3.1
+ 
+ ### Soal 3.2
+ 
+ ### Soal 3.3
