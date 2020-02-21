@@ -246,12 +246,13 @@ dimana nama file yang lama akan dirubah ken ama file yang baru.
 
 ## SOAL 3 
 Dalam soal ini kita diminta untuk membuat:
-   a) Sebuah script untuk mendownload 28 gambar dari "https://loremflickr.com/320/240/cat" menggunakan command wget dan menyimpan 
-      file dengan nama "pdkt_kusuma_NO" (contoh: pdkt_kusuma_1, pdkt_kusuma_2, pdkt_kusuma_3) serta menyimpan log messages wget 
-      kedalam sebuah file "wget.log".
-   b) Penjadwalan untuk menjalankan script setiap 8 jam dimulai dari jam 6.05 setiap hari kecuali hari sabtu.
-   c) Sebuah script untuk mengidentifikasi gambar yang identik dari keseluruhan gambar yang terdownload tadi. Bila terindikasi 
-      sebagai gambar yang identik, maka sisakan 1 gambar dan pindahkan sisa file identik tersebut ke dalam folder ./duplicate
-      dengan format filename "duplicate_nomor" (contoh : duplicate_200, duplicate_201). Setelah itu lakukan pemindahan semua gambar 
-      yang tersisa kedalam folder ./kenangan dengan format filename "kenangan_nomor" (contoh: kenangan_252, kenangan_253).
-      Setelah tidak ada gambar di current directory, maka lakukan backup seluruh log menjadi ekstensi ".log.bak".
+
+  1. Sebuah script untuk mendownload 28 gambar dari "https://loremflickr.com/320/240/cat" menggunakan command wget dan menyimpan 
+     file dengan nama "pdkt_kusuma_NO" (contoh: pdkt_kusuma_1, pdkt_kusuma_2, pdkt_kusuma_3) serta menyimpan log messages wget 
+     kedalam sebuah file "wget.log".
+  2. Penjadwalan untuk menjalankan script setiap 8 jam dimulai dari jam 6.05 setiap hari kecuali hari sabtu.
+  3. Sebuah script untuk mengidentifikasi gambar yang identik dari keseluruhan gambar yang terdownload tadi. Bila terindikasi 
+     sebagai gambar yang identik, maka sisakan 1 gambar dan pindahkan sisa file identik tersebut ke dalam folder ./duplicate
+     dengan format filename "duplicate_nomor" (contoh : duplicate_200, duplicate_201). Setelah itu lakukan pemindahan semua gambar 
+     yang tersisa kedalam folder ./kenangan dengan format filename "kenangan_nomor" (contoh: kenangan_252, kenangan_253).
+     Setelah tidak ada gambar di current directory, maka lakukan backup seluruh log menjadi ekstensi ".log.bak".
