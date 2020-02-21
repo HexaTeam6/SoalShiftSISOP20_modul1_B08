@@ -38,7 +38,7 @@ END{
 region=$(cut -d' ' -f2 <<<"$a")
 echo "Region dengan profit paling sedikit "$region
 ```
-#####Penjelasan
+##### Penjelasan
 ````
 a=$(awk -F "\t"
 ````
@@ -261,7 +261,41 @@ Dalam soal ini kita diminta untuk membuat:
  ### Penyelesaian
  
  ### Soal 3.1
+ Dalam script **bash** **soal3a.sh**, pertama - tama kita akan menyimpan url download ke dalam variabel `url` dan menyimpan lokasi
+ log ke variable `log`.
+ ````
+ url=https://loremflickr.com/320/240/cat
+ log=wget.log
+ ````
+ Setelah itu kita akan melakukan looping untuk mendownload gambar sebanyak 28 gambar dengan
+ ````
+ count=1
+
+ while [ $count -le 28 ]
+ do
+  name="pdkt_kusuma_"
+  filename="$name$count"
+  wget $url -O $filename -a $log
+  count=$((count+1))
+ done
+ ````
+ dimana variabel `filename` akan menyimpan gabungan nama dari `name` dan `count`. Lalu pada bagian ini
+ ````
+ wget $url -O $filename -a $log
+ ````
+ `wget` akan mendowload gambar dari link url yang telah kita simpan di variabel `url` dengan penamaan sesuai `filename` dan 
+ log messages yang ada akan disimpan dalam `wget.log`.
  
  ### Soal 3.2
+ Untuk membuat penjadwalan maka kita perlu membuka terminal pada jendela Linux. 
+ Lalu untuk mengedit crontab dilakukan dengan perintah
+ ````
+ crontab -e
+ ````
+ Lalu kita perlu memasukkan penjadwalan yang diminta yaitu setiap 8 jam dimulai dari jam 6.05 setiap hari kecuali hari sabtu
+ ````
+ 5 6-23/8 * * 0-5 bash /home/user/SoalShiftSISOP20_modul1_B08/soal3/soal3a.sh
+ ````
+ dimana 5 adalah menit, 6-23/8 adalah jam (dimulai dari jam 6 hingga 23 dengan jarak 8 jam), 0-5 adalah hari (minggu-jumat).
  
  ### Soal 3.3
