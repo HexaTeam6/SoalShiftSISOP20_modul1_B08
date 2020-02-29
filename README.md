@@ -1,6 +1,6 @@
 # SoalShiftSISOP20_modul1_B08
 
-Soal Shift Modul 1 yang berfokus pada command command bash, awk, serta pengguanan crontab.
+Soal Shift Modul 1 yang berfokus pada command command bash, awk, serta penggunaan crontab.
 
 ## SOAL 1
 Whits adalah seorang mahasiswa teknik informatika. Dia mendapatkan tugas praktikum
