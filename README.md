@@ -261,7 +261,7 @@ Dalam soal ini kita diminta untuk membuat:
  ### Penyelesaian
  
  ### Soal 3.1
- Dalam script **bash** **soal3a.sh**, pertama - tama kita akan menyimpan url download ke dalam variabel `url` dan menyimpan lokasi
+ Dalam script **bash** **soal3.sh** bagian 3A, pertama - tama kita akan menyimpan url download ke dalam variabel `url` dan menyimpan lokasi
  log ke variable `log`.
  ````
  url=https://loremflickr.com/320/240/cat
@@ -302,23 +302,66 @@ Dalam soal ini kita diminta untuk membuat:
  * `0-5` adalah hari (minggu-jumat)
  
  ### Soal 3.3
-
+ Penyelesaian soal 3C terdapat dalam script **bash** **soal3.sh** bagian 3C.
 ````
-#!/bin/bash
+#Bagian 3C
+mkdir kenangan
+mkdir duplicate
 
-url=https://loremflickr.com/320/240/cat
-log=wget.log
-count=1
+awk -F "\n" '/Location/{gsub("Location: /cache/resized/", ""); gsub("\\[follow$
 
-while [ $count -le 28 ]
-do
- name="pdkt_kusuma_"
- filename="$name$count"
- wget $url -O $filename -a $log
- count=$((count+1))
-done
+awk 'BEGIN{i=1;j=1;k=1}
+{
+ dup[$1]++
+ if(dup[$1] > 1) {
+        mov = "mv pdkt_kusuma_" i " duplicate/duplicate_" j
+        j++
+ }
+ else {
+        mov = "mv pdkt_kusuma_" i " kenangan/kenangan_" k
+        k++
+ }
+ system(mov)
+ i++
+}' name_log.txt
 
-awk -F "\n" '/Location/{gsub("Location: /cache/resized/", ""); gsub("\\[following]", ""); print}' wget.log > name_log.txt
+cat wget.log | grep Location: > location.log.bak
 ````
 
-Script bash diatas masih belum selesai.
+Pertama -  tama kita akan membuat directory dengan nama `kenangan` dan `duplicate`.
+````
+mkdir kenangan
+mkdir duplicate
+````
+
+Lalu kita akan mengambil nama file menggunakan awk dan menyimpannya ke dalam file .txt dengan nama `name_log.txt`.
+````
+awk -F "\n" '/Location/{gsub("Location: /cache/resized/", ""); gsub("\\[follow$
+````
+
+Setelah mendapat nama file, kita akan membandingkan nama file antara satu file dengan file lainnya menggunakan array. 
+Untuk gambar yang belum pernah disimpan akan dimasukkan directory `kenangan` dengan nama `kenangan_no` dan apabila sudah 
+pernah disimpan `dup[$1] > 1` maka akan disimpan ke dalam directory `duplicate` dengan nama `duplicate_no`.
+````
+awk 'BEGIN{i=1;j=1;k=1}
+{
+ dup[$1]++
+ if(dup[$1] > 1) {
+        mov = "mv pdkt_kusuma_" i " duplicate/duplicate_" j
+        j++
+ }
+ else {
+        mov = "mv pdkt_kusuma_" i " kenangan/kenangan_" k
+        k++
+ }
+ system(mov)
+ i++
+}' name_log.txt
+````
+
+Apabila semua gambar sudah dibagi maka location file akan dibackup ke `location.lg.bak`.
+````
+cat wget.log | grep Location: > location.log.bak
+````
+
+Sekian penyelesaian soal untuk praktikum SISOP Modul 1, atas perhatiannya kami ucapkan terima kasih.
