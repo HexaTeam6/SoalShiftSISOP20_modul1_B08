@@ -336,7 +336,7 @@ mkdir duplicate
 
 Lalu kita akan mengambil nama file menggunakan awk dan menyimpannya ke dalam file .txt dengan nama `name_log.txt`.
 ````
-awk -F "\n" '/Location/{gsub("Location: /cache/resized/", ""); gsub("\\[follow$
+awk -F "\n" '/Location/{gsub("Location: /cache/resized/", ""); gsub("\\[following]", ""); print}' wget.log > name_log.txt
 ````
 
 Setelah mendapat nama file, kita akan membandingkan nama file antara satu file dengan file lainnya menggunakan array `dup[$1]` 
