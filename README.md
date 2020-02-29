@@ -302,7 +302,7 @@ Dalam soal ini kita diminta untuk membuat:
  * `0-5` adalah hari (minggu-jumat)
  
  ### Soal 3.3
- Penyelesaian soal 3C terdapat dalam script **bash** **soal3.sh** bagian 3C.
+ Penyelesaian soal 3.3 terdapat dalam script **bash** **soal3.sh** bagian 3C.
 ````
 #Bagian 3C
 mkdir kenangan
@@ -339,9 +339,10 @@ Lalu kita akan mengambil nama file menggunakan awk dan menyimpannya ke dalam fil
 awk -F "\n" '/Location/{gsub("Location: /cache/resized/", ""); gsub("\\[follow$
 ````
 
-Setelah mendapat nama file, kita akan membandingkan nama file antara satu file dengan file lainnya menggunakan array. 
-Untuk gambar yang belum pernah disimpan akan dimasukkan directory `kenangan` dengan nama `kenangan_no` dan apabila sudah 
-pernah disimpan `dup[$1] > 1` maka akan disimpan ke dalam directory `duplicate` dengan nama `duplicate_no`.
+Setelah mendapat nama file, kita akan membandingkan nama file antara satu file dengan file lainnya menggunakan array `dup[$1]` 
+dengan nama file sebagai indeks. Untuk gambar yang belum pernah disimpan akan dimasukkan directory `kenangan` dengan 
+nama `kenangan_no` dan apabila sudah pernah disimpan `dup[$1] > 1` maka akan disimpan ke dalam directory `duplicate` dengan 
+nama `duplicate_no`.
 ````
 awk 'BEGIN{i=1;j=1;k=1}
 {
@@ -359,7 +360,7 @@ awk 'BEGIN{i=1;j=1;k=1}
 }' name_log.txt
 ````
 
-Apabila semua gambar sudah dibagi maka location file akan dibackup ke `location.lg.bak`.
+Apabila semua gambar sudah dipisah ke dalam directory `kenangan` dan `dupluicate` maka location file pada `wget.log` akan dibackup ke `location.lg.bak`.
 ````
 cat wget.log | grep Location: > location.log.bak
 ````
