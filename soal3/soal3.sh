@@ -17,7 +17,7 @@ done
 mkdir kenangan
 mkdir duplicate
 
-awk -F "\n" '/Location/{gsub("Location: /cache/resized/", ""); gsub("\\[follow$
+awk -F "\n" '/Location/{gsub("Location: /cache/resized/", ""); gsub("\\[following]", ""); print}' wget.log > name_log.txt
 
 awk 'BEGIN{i=1;j=1;k=1}
 {
